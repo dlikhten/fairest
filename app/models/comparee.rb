@@ -1,6 +1,4 @@
 class Comparee < ActiveRecord::Base
-  belongs_to :comparison
-
   attr_accessor :awesomeness
 
   mount_uploader :file, FileUploader
