@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag :comparison %>
+
+<h1>Who is the Fairest?</h1>
+<p>
+  Developed using the latest in computer vision and artificial intelligence
+  using the combined feedback of thousands of people. The accuracy may shock you.
+</p>
+<p>
+  Just upload the best portrait photos you can find of the subjects and let the patent-pending
+  algorithm determine who is the Fairest.
+</p>
+
+
+<%- unless @comparison.top_comparee.nil? -%>
+  <h2>The Fairest:</h2>
+  <%= image_tag(@comparison.top_comparee.file.main.url) %>
+<%- end -%>
+
+<h2>Upload Your Best Photos:</h2>
+<%= semantic_form_for @comparison, :url => '/fairest' do |f| %>
+  <%= f.inputs :for => :comparees do |child_f| %>
+    <li>
+      <%= image_tag(child_f.object.file.main.url) if child_f.object.file? %>
+    </li>
+    <%= child_f.input :file, :as => :file %>
+    <%= child_f.input :file_cache, :as => :hidden %>
+  <%- end -%>
+  <%= f.submit %>
+<%- end -%>

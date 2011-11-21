@@ -1,4 +1,8 @@
 Fairest::Application.routes.draw do
+  get "/fairest", :controller => 'comparison', :action => "index"
+  post '/fairest', :controller => 'comparison', :action => "create"
+  root :controller => 'comparison', :action => "index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
